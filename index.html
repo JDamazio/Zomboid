@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidor RP Zomboid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .shadow-sangue {
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.6), 0 0 25px rgba(255, 0, 0, 0.3);
+        }
+        .text-sangue {
+            color: rgba(255, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <header class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Zomboid <span class="text-sangue">RP</span></h1>
+            <nav>
+                <a href="#sobre" class="mr-4 hover:underline hover:border-b-2 hover:border-red-500">Sobre</a>
+                <a href="#regras" class="mr-4 hover:underline hover:border-b-2 hover:border-red-500">Regras</a>
+                <a href="#doacao" class="hover:underline hover:border-b-2 hover:border-red-500">Doação PIX</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="text-center py-20 bg-gray-700">
+        <h2 class="text-4xl font-bold mb-4">Bem-vindo ao Apocalipse 👾🧟</h2>
+        <p class="mb-6 text-gray-300">Uma experiência única de Roleplay em Project Zomboid.</p>
+        <a href="#doacao" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Faça uma Doação</a>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="py-20 bg-gray-900">
+        <div class="container mx-auto flex items-center justify-center space-x-8">
+            <div class="w-1/2 text-left">
+                <h3 class="text-4xl font-bold text-sangue mb-6">Sobre o Servidor</h3>
+                <p class="text-xl text-gray-300 mb-8">
+                    Em um mundo devastado por um apocalipse zumbi, nosso servidor oferece uma experiência imersiva de roleplay. 
+                    Construa sua sobrevivência, forme alianças e enfrente desafios diários enquanto explora o mundo em Project Zomboid.
+                </p>
+            </div>
+            <div class="w-1/2">
+                <!-- Se tirarem do ar tem na pasta de midias -->
+                <img src="https://projectzomboid.com.br/wp-content/uploads/2022/09/project-zomboid-wallpaper-8.webp" alt="Imagem do apocalipse" class="rounded-lg shadow-sangue w-3/4 h-auto mx-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Doação -->
+    <section id="doacao" class="py-10 bg-gray-800 text-center">
+        <div class="mb-8">
+            <h3 class="text-3xl font-bold mb-4">Apoie o Servidor</h3>
+            <p class="mb-6">Ajude a manter o servidor ativo e melhore a experiência para todos os jogadores.</p>
+        </div>
+
+        <div class="container mx-auto flex justify-center items-center space-x-8">
+            <div class="w-1/2 text-center">
+                <img src="./settings/midias/QRcode500x500.png" alt="QR Code para doação PIX" class="mx-auto w-60 h-60">
+            </div>
+            <div class="w-1/2 text-left space-y-4">
+                <div class="inline-block max-w-lg">
+                    <p class="font-mono bg-gray-700 p-4 inline-block rounded">Aqui estão duas formas fáceis de realizar sua <span class="text-sangue"><strong>doação</strong></span>: use o <span class="text-sangue"><strong>QR</strong></span> code para abrir diretamente no app do seu <span class="text-sangue"><strong>banco</strong></span> ou copie a <span class="text-sangue"><strong>chave PIX</strong></span> abaixo, conforme sua preferência<span class="text-sangue"><strong>.</strong></span></p>
+                </div>
+                <div class="inline-block max-w-lg flex items-center space-x-2">
+                    <p class="font-mono bg-gray-700 p-4 inline-block rounded mr-4">PIX: <span id="chavePix" class="text-sangue"><strong>794d2933-d53d-4ebc-afa0-6ce3e6876716</strong></span></p>
+                    <button id="copyButton" onclick="CopiarPix()" class="bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded">Copiar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-gray-900 py-4 text-center">
+        <p>&copy; 2025 Zomboid RP. Todos os direitos reservados. <span class="text-sangue">By Naut Tech</span></p>
+    </footer>
+
+    <script>
+        function CopiarPix() {
+            const chavePix = document.getElementById('chavePix').innerText;
+            const copyButton = document.getElementById('copyButton');
+            
+            const tempInput = document.createElement('input');
+            tempInput.value = chavePix;
+            document.body.appendChild(tempInput);
+            
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            copyButton.innerText = "Copiado";
+            copyButton.disabled = true;
+            copyButton.classList.add("bg-gray-500", "cursor-not-allowed");
+            copyButton.classList.remove("hover:bg-gray-600");
+
+            setTimeout(() => {
+                copyButton.innerText = "Copiar";
+                copyButton.disabled = false;
+                copyButton.classList.remove("bg-gray-500", "cursor-not-allowed");
+                copyButton.classList.add("hover:bg-gray-600");
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
